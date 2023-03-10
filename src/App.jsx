@@ -1,22 +1,31 @@
-import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Activate from "./components/Activate";
+import Forgot from "./components/Forgot";
+import Reset from "./components/Reset";
+import "bootstrap/dist/css/bootstrap.css";
+import NavBar from "./components/NavBar";
+export const url = "https://password-reset-api.onrender.com";
 
-import Forgotpassword from "./Components/Forgotpassword";
-import Msg from "./Components/Msg";
-import Resetpassword from "./Components/Resetpassword";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Forgotpassword />} />
-        <Route path="/resetpassword/:pass_token" element={<Resetpassword />} />
-        <Route path="/msg" element={<Msg />} />
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route
+          path="/activate/:activation_token"
+          element={<Activate />}
+        ></Route>
+        <Route path="/forgot_password" element={<Forgot />}></Route>
+        <Route path="/reset_password/:token" element={<Reset />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="*" element={<Login />}></Route>
       </Routes>
-
-      <ToastContainer autoclose={7000} />
     </div>
   );
 }
